@@ -1,22 +1,12 @@
 import { createStore } from "vuex";
 import { Tag, State } from "./model";
+import { list } from "@/mock/sideBar";
 
 export default createStore({
   state: (): State => ({
     isCollapsed: false,
-    tagList: [
-      {
-        key: "1",
-        name: "Dashboard",
-        isActive: true,
-      },
-      {
-        key: "2",
-        name: "Document",
-        isActive: false,
-      },
-    ],
-    selectedKeys: ["1"],
+    tagList: [list[0], list[1]],
+    selectedKeys: [list[0].key],
   }),
 
   getters: {

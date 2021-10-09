@@ -12,7 +12,7 @@ export const list = [
     key: "1",
     name: "Dashboard",
     icon: LayoutOutlined,
-    isActive: false,
+    isActive: true,
   },
   {
     key: "2",
