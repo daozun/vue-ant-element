@@ -2,8 +2,10 @@
   <div :class="classObj">
     <SideBar class="sidebar"></SideBar>
     <div class="main">
-      <NavBar></NavBar>
-      <TagsView></TagsView>
+      <header class="header">
+        <NavBar></NavBar>
+        <TagsView></TagsView>
+      </header>
       <router-view class="container" />
     </div>
   </div>
@@ -28,6 +30,7 @@ const classObj = computed(() => {
 
 <style lang="scss" scoped>
 .openSidebar {
+  height: 100%;
   .sidebar {
     position: fixed;
     width: 250px;
@@ -35,11 +38,13 @@ const classObj = computed(() => {
   }
 
   .main {
+    height: 100%;
     margin-left: 250px;
   }
 }
 
 .hideSidebar {
+  height: 100%;
   .sidebar {
     position: fixed;
     width: 80px;
@@ -47,11 +52,20 @@ const classObj = computed(() => {
   }
 
   .main {
+    height: 100%;
     margin-left: 80px;
   }
 }
 
 .main {
+  height: 100%;
+
+  .header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+  }
+
   .container {
     padding: 32px;
   }
