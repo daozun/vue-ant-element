@@ -5,8 +5,9 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import * as echarts from "echarts";
+import { initResize, cancelResize } from "@/utils/resize";
 
 defineProps({
   width: {
@@ -20,8 +21,10 @@ defineProps({
   },
 });
 
+let circleChart: any
+
 onMounted(() => {
-  let circleChart = echarts.init(
+  circleChart = echarts.init(
     document.getElementById("circleChart") as HTMLCanvasElement
   );
 
@@ -63,6 +66,12 @@ onMounted(() => {
       },
     ],
   });
+
+  initResize(circleChart);
+});
+
+onUnmounted(() => {
+  cancelResize(circleChart);
 });
 </script>
 

@@ -5,8 +5,9 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import * as echarts from "echarts";
+import { initResize, cancelResize } from "@/utils/resize";
 
 defineProps({
   width: {
@@ -20,8 +21,10 @@ defineProps({
   },
 });
 
+let pieChart: any
+
 onMounted(() => {
-  let pieChart = echarts.init(
+  pieChart = echarts.init(
     document.getElementById("pieChart") as HTMLCanvasElement
   );
 
@@ -46,6 +49,12 @@ onMounted(() => {
       },
     ],
   });
+
+  initResize(pieChart);
+});
+
+onUnmounted(() => {
+  cancelResize(pieChart);
 });
 </script>
 

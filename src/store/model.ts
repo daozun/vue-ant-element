@@ -6,6 +6,7 @@ export interface Tag {
 
 export interface State {
   isCollapsed: boolean;
+  currentRoute: string;
   tagList: Tag[];
   selectedKeys: string[];
 }

@@ -5,9 +5,10 @@
       mode="inline"
       theme="dark"
       :inline-collapsed="collapsed"
+      :forceSubMenuRender="true"
       v-model:selectedKeys="selectedKeys"
     >
-      <template v-for="item in list" :key="item.key">
+      <template v-for="item in sideBarlist" :key="item.key">
         <template v-if="!item.children">
           <a-menu-item
             :key="item.key"
@@ -30,11 +31,12 @@
 
 <script lang="ts" setup>
 import { reactive, ref, toRaw, toRefs, watch, Component, computed } from "vue";
+import { PieChartOutlined, MailOutlined } from "@ant-design/icons-vue";
 import { useRouter, useRoute } from "vue-router";
 import { useStore } from "vuex";
 import SubMenu from "./SubMenu.vue";
 import { MenuList } from "./model";
-import { list } from "@/mock/sideBar";
+import { sideBarlist } from "@/mock/sideBar";
 
 const selectedKeys = computed(() => {
   return store.state.selectedKeys;
@@ -47,9 +49,12 @@ const store = useStore();
 const router = useRouter();
 
 const goRoute = (item: MenuList) => {
-  router.push(item.name);
+  console.log("item", item);
+
+  // router.push(item.name);
   store.commit("addTagList", item);
   store.commit("changeTagStatus", item);
+  store.commit("setCurrentRoute", item.name);
 };
 </script>
 

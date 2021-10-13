@@ -1,17 +1,22 @@
 import { createStore } from "vuex";
 import { Tag, State } from "./model";
-import { list } from "@/mock/sideBar";
+import { sideBarlist } from "@/mock/sideBar";
 
 export default createStore({
   state: (): State => ({
     isCollapsed: false,
-    tagList: [list[0], list[1]],
-    selectedKeys: [list[0].key],
+    currentRoute: "Dashboard",
+    tagList: [sideBarlist[0], sideBarlist[1]],
+    selectedKeys: [sideBarlist[0].key],
   }),
 
   getters: {
     getCollapse() {
       return this.isCollapsed;
+    },
+
+    getCurrentRoute() {
+      return this.currentRoute;
     },
   },
 
@@ -45,6 +50,10 @@ export default createStore({
           state.selectedKeys[0] = item.key;
         }
       }
+    },
+
+    setCurrentRoute(state, currentRoute: string) {
+      state.currentRoute = currentRoute;
     },
   },
 

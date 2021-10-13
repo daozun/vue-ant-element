@@ -1,4 +1,9 @@
-import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from "vue-router";
+import {
+  createRouter,
+  createWebHashHistory,
+  createWebHistory,
+  RouteRecordRaw,
+} from "vue-router";
 import Layout from "@/views/Layout/Index.vue";
 
 const routes: Array<RouteRecordRaw> = [
@@ -26,7 +31,6 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/document",
     component: Layout,
-    // redirect: "/document/index",
     children: [
       {
         path: "",
@@ -38,7 +42,6 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/chart",
     component: Layout,
-    // redirect: "/chart/index",
     children: [
       {
         path: "",
@@ -50,7 +53,6 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/guide",
     component: Layout,
-    // redirect: "/guide/index",
     children: [
       {
         path: "",
@@ -62,19 +64,24 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/table",
     component: Layout,
-    // redirect: "/table/index",
     children: [
       {
         path: "",
         component: () => import("@/views/Table/Index.vue"),
         name: "Table",
+        children: [
+          {
+            path: "dynamicTable",
+            component: () => import("@/views/Table/DynamicTable/Index.vue"),
+            name: "DynamicTable",
+          },
+        ],
       },
     ],
   },
   {
     path: "/tab",
     component: Layout,
-    // redirect: "/tab/index",
     children: [
       {
         path: "",

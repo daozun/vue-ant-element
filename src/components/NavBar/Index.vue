@@ -6,7 +6,7 @@
     <div class="breadcrumb fl">
       <a-breadcrumb>
         <a-breadcrumb-item>首页</a-breadcrumb-item>
-        <a-breadcrumb-item>文档</a-breadcrumb-item>
+        <a-breadcrumb-item>{{ currentRoute }}</a-breadcrumb-item>
       </a-breadcrumb>
     </div>
     <div class="right-menu fr big-font">
@@ -19,8 +19,9 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, toRaw } from "vue";
+import { reactive, ref, toRaw, computed } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 import {
   UnorderedListOutlined,
   SearchOutlined,
@@ -33,6 +34,8 @@ const store = useStore();
 const toggleClick = () => {
   store.commit("setCollapse");
 };
+
+const currentRoute = computed(() => store.state.currentRoute);
 </script>
 
 <style lang="scss" scoped>

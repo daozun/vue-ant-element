@@ -5,8 +5,9 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import * as echarts from "echarts";
+import { initResize, cancelResize } from "@/utils/resize";
 
 defineProps({
   width: {
@@ -20,8 +21,10 @@ defineProps({
   },
 });
 
+let nightingaleChart: any
+
 onMounted(() => {
-  let nightingaleChart = echarts.init(
+  nightingaleChart = echarts.init(
     document.getElementById("nightingaleChart") as HTMLCanvasElement
   );
 
@@ -48,13 +51,19 @@ onMounted(() => {
           },
           {
             value: 500,
-            name: "FNC",
+            name: "GEN.G",
           },
         ],
         roseType: "area",
       },
     ],
   });
+
+  initResize(nightingaleChart);
+});
+
+onUnmounted(() => {
+  cancelResize(nightingaleChart);
 });
 </script>
 

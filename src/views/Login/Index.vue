@@ -25,9 +25,11 @@
 <script lang="ts" setup>
 import { reactive, ref, toRaw } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 
 const router = useRouter();
+const store = useStore();
 
 const formRef = ref();
 
@@ -55,6 +57,7 @@ const onSubmit = () => {
       const newFormState = toRaw(formState);
       if (newFormState.name === "admin" && newFormState.password === "123") {
         router.push("/dashboard");
+        store.commit("setCurrentRoute", "dashboard");
       }
     })
     .catch((error: Error) => {

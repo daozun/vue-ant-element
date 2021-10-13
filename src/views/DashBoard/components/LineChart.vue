@@ -3,8 +3,9 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import * as echarts from "echarts";
+import { initResize, cancelResize } from "@/utils/resize";
 
 defineProps({
   width: {
@@ -18,8 +19,10 @@ defineProps({
   },
 });
 
+let lineChart: any
+
 onMounted(() => {
-  let lineChart = echarts.init(
+  lineChart = echarts.init(
     document.getElementById("lineChart") as HTMLCanvasElement
   );
 
@@ -54,6 +57,12 @@ onMounted(() => {
       },
     ],
   });
+
+  initResize(lineChart);
+});
+
+onUnmounted(() => {
+  cancelResize(lineChart);
 });
 </script>
 

@@ -29,6 +29,8 @@ const classObj = computed(() => {
 </script>
 
 <style lang="scss" scoped>
+// todo: 简化css
+
 .openSidebar {
   height: 100%;
   .sidebar {
@@ -60,14 +62,9 @@ const classObj = computed(() => {
 .main {
   height: 100%;
 
-  .header {
-    width: 100%;
-    position: fixed;
-    top: 0;
-  }
-
   .container {
     padding: 32px;
+    position: relative;
   }
 }
 </style>

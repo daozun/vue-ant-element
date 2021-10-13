@@ -3,8 +3,9 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import * as echarts from "echarts";
+import { initResize, cancelResize } from "@/utils/resize";
 
 defineProps({
   width: {
@@ -18,8 +19,10 @@ defineProps({
   },
 });
 
+let barChart: any;
+
 onMounted(() => {
-  let barChart = echarts.init(
+  barChart = echarts.init(
     document.getElementById("barChart") as HTMLCanvasElement
   );
 
@@ -35,6 +38,12 @@ onMounted(() => {
       },
     ],
   });
+
+  initResize(barChart);
+});
+
+onUnmounted(() => {
+  cancelResize(barChart);
 });
 </script>
 

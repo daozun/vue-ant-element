@@ -29,11 +29,17 @@ const tagList = computed(() => {
   return store.state.tagList;
 });
 
-const closeTag = (item: Tag) => store.commit("delTagList", item);
+const closeTag = (item: Tag) => {
+  store.commit("delTagList", item);
+
+  const lastView = tagList.value.slice(-1)[0];
+  goRoute(lastView);
+};
 
 const goRoute = async (item: Tag) => {
   await router.push(item.name);
   store.commit("changeTagStatus", item);
+  store.commit("setCurrentRoute", item.name);
 };
 </script>
 

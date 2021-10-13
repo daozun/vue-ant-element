@@ -7,7 +7,7 @@ import {
   SendOutlined,
 } from "@ant-design/icons-vue";
 
-export const list = [
+export const sideBarlist = [
   {
     key: "1",
     name: "Dashboard",
@@ -25,6 +25,20 @@ export const list = [
     name: "Table",
     icon: TableOutlined,
     isActive: false,
+    children: [
+      {
+        key: "3.1",
+        name: "DynamicTable",
+        isActive: false,
+        children: [
+          {
+            key: "3.1.1",
+            name: "DynamicTable",
+            isActive: false,
+          },
+        ],
+      },
+    ],
   },
   {
     key: "4",
